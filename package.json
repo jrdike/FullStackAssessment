@@ -1,0 +1,25 @@
+{
+  "name": "fullstackassessment",
+  "version": "1.0.0",
+  "description": "Full Stack Assessment",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrdike/FullStackAssessment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/jrdike/FullStackAssessment/issues"
+  },
+  "homepage": "https://github.com/jrdike/FullStackAssessment#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "react": "^19.1.1"
+  }
+}
