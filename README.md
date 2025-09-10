@@ -25,3 +25,6 @@
 ### Clarifications
 - Overall pretty clear
 
+### Context
+- This was a 48-hour programming assessment for OmniSync. I did not add anything (aside from this comment) after the window elapsed.
+
