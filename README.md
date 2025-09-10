@@ -5,6 +5,7 @@
 1. Clone or download repo
 2. Navigate to directory in terminal
 3. Run 'docker-compose up'
+4. Navigate to http://localhost:5173 in browser
 
 ## Notes
 ### Challenges
