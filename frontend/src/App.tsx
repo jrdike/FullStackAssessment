@@ -10,21 +10,40 @@ const mainButtonCSS: string = "w-1/5 h-48 align-middle py-2.5 px-5 me-2 mb-2 tex
 
 let currentCol: string = "firstclick"
 
+/**
+ * The main app for the frontend
+ * @returns React app
+ */
 function App() {
   const [cards, setCards] = useState(dummyCards)
 
+  /**
+   * Remaps the cards for React useState
+   */
   function mapCards() {
     setCards((cards) => (cards.map(card => card)))
   }
 
+  //These functions all call a certain route in backend/index.ts
+
+  /**
+   * Calls the makeTable route
+   */
   function makeTable() {
     axios.get("http://localhost:3000/")
   }
 
+  /**
+   * Calls the resetTable route
+   */
   function resetTable() {
     axios.get("http://localhost:3000/reset")
   }
 
+  /**
+   * Calls the addCard route
+   * @param card Card to add
+   */
   function addCard(card: Devcard) {
     let num_card = card.id
     let click_card = card.clicks
@@ -35,15 +54,22 @@ function App() {
       time: time_card
     })
   }
-
+  
+  /**
+   * Calls the getCards route and updates cards
+   */
   function getCards() {
     axios.post('http://localhost:3000/cards', {
       col: currentCol
     }).then((res)=>{
-      console.log(res.data)
+      setCards(res.data)
     })
   }
 
+  /**
+   * Calls the getCount route
+   * @returns number of rows
+   */
   function getCount() {
     let count: Number = 0
     axios.get('http://localhost:3000/cards').then((res)=>{
@@ -51,11 +77,13 @@ function App() {
     })
     return count
   }
-  
-  useEffect(() => {
-    makeTable()
-  }, [])
 
+  //Attempt at using React hooks
+  useEffect(()=>{
+    makeTable()
+  })
+
+  //Did not have time to implement API calls here, so this is mostly frontend
   return (
     <>
       <div className="py-10 text-center">
@@ -98,6 +126,11 @@ function App() {
   )
 }
 
+/**
+ * Method that sorts the cards in-place for the frontend implementation
+ * @param cards Array of Devcards
+ * @param click Determines whether to sort by click or by timestamp
+ */
 function sortCards(cards: Devcard[], click: boolean) {
   cards.sort((a: Devcard, b: Devcard) => {
     if (click) {

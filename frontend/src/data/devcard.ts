@@ -1,3 +1,4 @@
+// Basic implementation of dummy data
 import type { Devcard } from '../types/devcard'
 export const dummyCards: Devcard[] = []
   for (let i = 1; i <= 8; i++) {
