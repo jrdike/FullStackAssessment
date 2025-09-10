@@ -18,7 +18,6 @@ const pool: Pool = new Pool({
 app.get("/", async(req: Request, res: Response) => {
     await pool.query('CREATE TABLE IF NOT EXISTS cards (id VARCHAR(255) UNIQUE, clicks INT, firstclick BIGINT)')
     res.send("success")
-    console.log('get')
 })
 
 app.post("/", async (req: Request, res: Response) => {
@@ -27,8 +26,14 @@ app.post("/", async (req: Request, res: Response) => {
     res.send("success")
 })
 
-app.get("/", async (req: Request, res: Response) => {
+app.get("/cards", async (req: Request, res: Response) => {
     const response = await pool.query('SELECT * FROM cards')
+    res.send(response.rows)
+})
+
+app.post("/cards", async (req: Request, res: Response) => {
+    let { col } = req.body;
+    const response = await pool.query(`SELECT * FROM cards ORDER BY ${col}`)
     res.send(response.rows)
 })
 
