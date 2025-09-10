@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/jrdike/FullStackAssessment#readme",
   "dependencies": {
+    "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "node": "^20.19.5",
+    "pg": "^8.16.3",
     "react": "^19.1.1",
-    "tsx": "^4.20.5"
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }
