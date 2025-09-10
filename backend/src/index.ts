@@ -18,6 +18,7 @@ const pool: Pool = new Pool({
 app.get("/", async(req: Request, res: Response) => {
     await pool.query('CREATE TABLE IF NOT EXISTS cards (id VARCHAR(255) UNIQUE, clicks INT, firstclick BIGINT)')
     res.send("success")
+    console.log('get')
 })
 
 app.post("/", async (req: Request, res: Response) => {
