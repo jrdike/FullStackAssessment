@@ -2,9 +2,9 @@
   "name": "fullstackassessment",
   "version": "1.0.0",
   "description": "Full Stack Assessment",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsx watch src"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   "homepage": "https://github.com/jrdike/FullStackAssessment#readme",
   "dependencies": {
     "express": "^5.1.0",
-    "react": "^19.1.1"
+    "node": "^20.19.5",
+    "react": "^19.1.1",
+    "tsx": "^4.20.5"
   }
 }
