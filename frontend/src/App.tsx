@@ -8,6 +8,8 @@ const defaultButtonCSS: string = "py-2.5 px-5 me-2 mb-2 text-sm font-medium text
 //Modified CSS for main buttons
 const mainButtonCSS: string = "w-1/5 h-48 align-middle py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
 
+let currentCol: string = "firstclick"
+
 function App() {
   const [cards, setCards] = useState(dummyCards)
 
@@ -23,7 +25,34 @@ function App() {
     axios.get("http://localhost:3000/reset")
   }
 
-  
+  function addCard(card: Devcard) {
+    let num_card = card.id
+    let click_card = card.clicks
+    let time_card = card.timestamp == null ? 9223372036854775807 : card.timestamp.getTime()
+    axios.post('http://localhost:3000/', {
+      num: num_card,
+      click: click_card,
+      time: time_card
+    })
+  }
+
+  function getCards() {
+    axios.post('http://localhost:3000/cards', {
+      col: currentCol
+    }).then((res)=>{
+      console.log(res.data)
+    })
+  }
+
+  function getCount() {
+    let count: Number = 0
+    axios.get('http://localhost:3000/cards').then((res)=>{
+      count = Number(res.data[0].count)
+    })
+    return count
+  }
+
+  makeTable()
 
   return (
     <>

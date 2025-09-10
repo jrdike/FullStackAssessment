@@ -1,8 +1,10 @@
 import express, {type Request, type Response} from "express"
 import bodyparser from "body-parser"
 import { Pool } from "pg"
+import cors from "cors"
 
 const app: express.Application = express()
+app.use(cors())
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true }))
 
@@ -26,7 +28,7 @@ app.post("/", async (req: Request, res: Response) => {
     res.send("success")
 })
 
-app.get("/count", async(req: Request, res: Response) => {
+app.get("/cards", async(req: Request, res: Response) => {
     const response = await pool.query('SELECT COUNT(id) FROM cards')
     res.send(response.rows)
 })
@@ -36,10 +38,12 @@ app.get("/reset", async(req: Request, res: Response) => {
     res.send("success")
 })
 
+/*
 app.get("/cards", async (req: Request, res: Response) => {
     const response = await pool.query('SELECT * FROM cards')
     res.send(response.rows)
 })
+*/
 
 app.post("/cards", async (req: Request, res: Response) => {
     let { col } = req.body;
