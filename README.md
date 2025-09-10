@@ -4,12 +4,12 @@
 TODO: Write README
 
 ## Notes
-### Comforts
-TODO: Write README
-
 ### Challenges
 TODO: Write README
 
-### Clarifications
+### Comforts
 TODO: Write README
+
+### Clarifications
+- Overall pretty clear
 

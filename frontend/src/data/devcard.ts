@@ -4,6 +4,6 @@ export const dummyCards: Devcard[] = []
       dummyCards.push({
         id: i.toString(),
         clicks: 0,
-        timestamp: null
+        firstclick: 9223372036854775000
     })
   }

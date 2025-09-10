@@ -1,5 +1,5 @@
 import { dummyCards } from './data/devcard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Devcard } from './types/devcard'
 import axios from 'axios'
 
@@ -28,7 +28,7 @@ function App() {
   function addCard(card: Devcard) {
     let num_card = card.id
     let click_card = card.clicks
-    let time_card = card.timestamp == null ? 9223372036854775807 : card.timestamp.getTime()
+    let time_card = card.firstclick
     axios.post('http://localhost:3000/', {
       num: num_card,
       click: click_card,
@@ -51,8 +51,10 @@ function App() {
     })
     return count
   }
-
-  makeTable()
+  
+  useEffect(() => {
+    makeTable()
+  }, [])
 
   return (
     <>
@@ -64,13 +66,13 @@ function App() {
               cards.map(c => (c.id === card.id ? {
                 id: card.id,
                 clicks: card.clicks + 1,
-                timestamp: card.timestamp == null ? new Date() : card.timestamp
+                firstclick: Date.now()
               } : c))
             ))
           }}>
             <h3 className="font-bold text-3xl">{card.id}</h3>
             <p className="align-bottom">Clicks: {card.clicks}</p>
-            <p className="align-bottom">{card.timestamp == null ? "Never Clicked" : card.timestamp.toUTCString()}</p>
+            <p className="align-bottom">{card.firstclick >= 9223372036854775000 ? "Never Clicked" : new Date(card.firstclick).toUTCString()}</p>
           </button>
         ))}
       </div>
@@ -101,12 +103,7 @@ function sortCards(cards: Devcard[], click: boolean) {
     if (click) {
       return b.clicks - a.clicks
     } else {
-      let a_time = a.timestamp
-      let b_time = b.timestamp
-      if (a_time == null && b_time == null) return 0
-      else if (b_time == null) return -1
-      else if (a_time == null) return 1
-      else return a_time.getTime() - b_time.getTime()
+      return a.firstclick - b.firstclick
     }
   })
 }

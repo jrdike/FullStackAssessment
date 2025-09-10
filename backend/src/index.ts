@@ -47,7 +47,7 @@ app.get("/cards", async (req: Request, res: Response) => {
 
 app.post("/cards", async (req: Request, res: Response) => {
     let { col } = req.body;
-    const response = await pool.query(`SELECT * FROM cards ORDER BY ${col}`)
+    const response = await pool.query(`SELECT * FROM cards ORDER BY ${col}, id`)
     res.send(response.rows)
 })
 
