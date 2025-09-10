@@ -1,6 +1,7 @@
 import { dummyCards } from './data/devcard'
 import { useState } from 'react'
 import type { Devcard } from './types/devcard'
+import axios from 'axios'
 
 //I used this from https://flowbite.com/docs/components/buttons/ (specifically the one labelled alternative) as I'm not the best with styling
 const defaultButtonCSS: string = "py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
@@ -13,6 +14,16 @@ function App() {
   function mapCards() {
     setCards((cards) => (cards.map(card => card)))
   }
+
+  function makeTable() {
+    axios.get("http://localhost:3000/")
+  }
+
+  function resetTable() {
+    axios.get("http://localhost:3000/reset")
+  }
+
+  
 
   return (
     <>

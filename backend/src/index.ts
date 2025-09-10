@@ -26,6 +26,16 @@ app.post("/", async (req: Request, res: Response) => {
     res.send("success")
 })
 
+app.get("/count", async(req: Request, res: Response) => {
+    const response = await pool.query('SELECT COUNT(id) FROM cards')
+    res.send(response.rows)
+})
+
+app.get("/reset", async(req: Request, res: Response) => {
+    await pool.query('DELETE FROM cards')
+    res.send("success")
+})
+
 app.get("/cards", async (req: Request, res: Response) => {
     const response = await pool.query('SELECT * FROM cards')
     res.send(response.rows)
